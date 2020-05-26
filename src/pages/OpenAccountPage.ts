@@ -18,11 +18,5 @@ export class OpenAccountPage {
     public clickProcessButton() {
         this.processButton.click();
         log.info("Clicked on Process button.");
-    }
-
-    public enterAccountDetails(customer: string, currency: string) {
-        this.selectCustomer(customer);
-        this.selectCurrency(currency);
-        log.info("Entered account details with customer name as "+customer+" & currency "+currency);
-    }
+    }    
 }

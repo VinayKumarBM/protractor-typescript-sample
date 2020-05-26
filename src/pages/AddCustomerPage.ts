@@ -23,12 +23,4 @@ export class AddCustomerPage {
         this.createCustomerButton.click();
         log.info("Clicked on Add Customer button");
     }
-    
-    public enterCustomerDetais(firstName : string, lastName : string, postalCode : string) {
-        this.enterFirstName(firstName);
-        this.enterLastName(lastName);
-        this.enterPostalCode(postalCode);
-        log.info("Entered Customer details with First Name: "+firstName+
-                    ", Last Name: "+lastName+" & Postal Code: "+postalCode);
-    }
 }

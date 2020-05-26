@@ -9,8 +9,7 @@ export class SearchCustomerPage {
     public async searchCustomer(customerName: string) {
         await this.searchCustomerInputBox.clear();
         await this.searchCustomerInputBox.sendKeys(customerName);
-        log.info("Searched for Customer: "+customerName);
-        
+        log.info("Searched for Customer: "+customerName);        
     }
 
     public async getSearchResultCount() {

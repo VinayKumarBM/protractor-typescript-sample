@@ -1,21 +1,21 @@
 import { browser, element, by } from "protractor";
 import { ScreeshotUtil } from "../utils/ScreenshotUtil";
-import { HomePage } from "../pages/HomePage";
-import { ManagerHomePage } from "../pages/ManagerHomePage";
-import { AddCustomerPage } from "../pages/AddCustomerPage";
-import { OpenAccountPage } from "../pages/OpenAccountPage";
-import { SearchCustomerPage } from "../pages/SearchCustomerPage";
 import { AlertUtil } from "../utils/AlertUtil";
 import { ExcelReaderUtil } from "../utils/ExcelReaderUtil";
+import { AddCustomerModule } from "../modules/AddCustomerModule";
+import { OpenAccountModule } from "../modules/OpenAccountModule";
+import { HomePageModule } from "../modules/HomePageModule";
+import { ManagerHomePageModule } from "../modules/ManagerHomePageModule";
+import { SearchCustomerModule } from "../modules/SearchCustomerModule";
 const log = require('log4js').getLogger("ManagerTest");
 
 describe('Test functionality related to Bank Manager', () => {
 
-    let homePage = new HomePage();
-    let managerHomePage = new ManagerHomePage();
-    let addCustomerPage = new AddCustomerPage();
-    let openAccountPage = new OpenAccountPage();
-    let searchCustomerPage = new SearchCustomerPage();
+    let homePageModule = new HomePageModule();
+    let managerHomePageModule = new ManagerHomePageModule();
+    let addCustomerModule = new AddCustomerModule();
+    let openAccountModule = new OpenAccountModule();
+    let searchCustomerModule = new SearchCustomerModule();
     let testCaseName: string;
 
     beforeEach(() => {
@@ -25,22 +25,22 @@ describe('Test functionality related to Bank Manager', () => {
     it('TC001_AddCustomerTest', async () => {
         testCaseName = "TC001_AddCustomerTest";
         let dataMap = await ExcelReaderUtil.readFile("testData.xlsx", "ManagerTestData", testCaseName);
-        homePage.navigateToBankManagerHomePage();
-        managerHomePage.clickAddCustomerButton();
-        addCustomerPage.enterCustomerDetais(dataMap["FirstName"], dataMap["LastName"], dataMap["PostalCode"]);
+        homePageModule.navigateToBankManagerHomePage();
+        managerHomePageModule.navigateToAddNewCustomerPage();
+        addCustomerModule.enterCustomerDetais(dataMap["FirstName"], dataMap["LastName"], dataMap["PostalCode"]);
         ScreeshotUtil.takeScreenshot("CreateCustomer");
-        addCustomerPage.clickCreateCustomerButton();
+        addCustomerModule.saveCustomerDetails();
         expect(AlertUtil.getAlertMessageAndAccept()).toContain('Customer added successfully with customer id');
     });
 
     it('TC002_OpenAccountTest', async () => {
         testCaseName = "TC002_OpenAccountTest";
         let dataMap = await ExcelReaderUtil.readFile("testData.xlsx", "ManagerTestData", testCaseName);
-        homePage.navigateToBankManagerHomePage();
-        managerHomePage.clickOpenAccountButton();
-        openAccountPage.enterAccountDetails(dataMap["FirstName"], dataMap["Currency"]);
+        homePageModule.navigateToBankManagerHomePage();
+        managerHomePageModule.navigateToOpenCustomerAccountPage();
+        openAccountModule.enterAccountDetails(dataMap["FirstName"], dataMap["Currency"]);
         ScreeshotUtil.takeScreenshot("OpenAccount");
-        openAccountPage.clickProcessButton();
+        openAccountModule.createNewAccount();
         expect(AlertUtil.getAlertMessageAndAccept()).toContain('Account created successfully with account Number');
     });
 
@@ -48,14 +48,14 @@ describe('Test functionality related to Bank Manager', () => {
         testCaseName = "TC003_SearchAndDeleteCustomerTest";
         let dataMap = await ExcelReaderUtil.readFile("testData.xlsx", "ManagerTestData", testCaseName);
         let customerToDelete: string = dataMap["FirstName"];
-        homePage.navigateToBankManagerHomePage();
-        managerHomePage.clickCustomersButton();
-        await searchCustomerPage.searchCustomer(customerToDelete);
-        await searchCustomerPage.getSearchResultCount();
+        homePageModule.navigateToBankManagerHomePage();
+        managerHomePageModule.navigateToCustomerSearchPage();
+        await searchCustomerModule.enterCustomerDetailsToSearch(customerToDelete);
+        await searchCustomerModule.getNumberOfSearchresults();
         ScreeshotUtil.takeScreenshot("CustomerSearch");
-        await searchCustomerPage.deleteCustomer();
-        await searchCustomerPage.searchCustomer(customerToDelete);
+        await searchCustomerModule.deleteCustomerInSearchResult();
+        await searchCustomerModule.enterCustomerDetailsToSearch(customerToDelete);
         ScreeshotUtil.takeScreenshot("SearchDeletedCustomer");
-        expect(0).toEqual(await searchCustomerPage.getSearchResultCount());
+        expect(0).toEqual(await searchCustomerModule.getNumberOfSearchresults());
     });
 });
