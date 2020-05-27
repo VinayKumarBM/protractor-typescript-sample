@@ -1,0 +1,20 @@
+{
+    "customerName" : "Harry Potter",
+    "deposit": {
+        "amount" : "1000",
+        "transactionMessage" : "Deposit Successful"
+    },
+    "withdraw" : {
+        "amount" : "100",
+        "balance" : "900",
+        "transactionMessage" : "Transaction successful"
+    },
+    "invalidWithdrawl": {
+        "amount" : "9999",
+        "transactionMessage" : "Transaction Failed. You can not withdraw amount more than the balance."
+    },
+    "transactionHistory" : {
+        "creditAmount" : "1000",
+        "debitAmount" : "100"
+    }
+}

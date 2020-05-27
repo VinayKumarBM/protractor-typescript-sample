@@ -12,7 +12,7 @@ exports.config = {
   framework: 'jasmine2',
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 10000
+    defaultTimeoutInterval: 30000
   },
   specs: ['../../out-tsc/tests/*Test.js'],
 

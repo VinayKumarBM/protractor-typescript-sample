@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Protractor automation sample framework",
   "main": "config.js",
-  "scripts": {    
+  "scripts": {
     "tsc": "tsc",
     "pretest": "npm run tsc",
     "test": "protractor ./src/configs/config.js",
@@ -17,11 +17,11 @@
     "protractor-html-reporter-2": "^1.0.4"
   },
   "devDependencies": {
-    "jasmine": "^3.5.0",
-    "protractor": "^7.0.0",
     "@types/node": "^14.0.5",
-    "typescript": "^3.9.3",
-    "log4js": "^6.2.1",
-    "exceljs": "^3.9.0"
+    "exceljs": "^3.9.0",
+    "jasmine": "^3.5.0",
+    "log4js": "^6.3.0",
+    "protractor": "^7.0.0",
+    "typescript": "^3.9.3"
   }
 }

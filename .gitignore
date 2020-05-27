@@ -1,3 +1,5 @@
 node_modules
 reports
 .vscode/launch.json
+out-tsc
+package-lock.json

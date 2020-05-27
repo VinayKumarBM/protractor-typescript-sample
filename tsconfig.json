@@ -6,6 +6,7 @@
     "inlineSourceMap": true,
     "declaration": false,
     "noImplicitAny": false,
+    "resolveJsonModule": true,
     "outDir": "out-tsc",
     "types": ["jasmine", "node"]
   },

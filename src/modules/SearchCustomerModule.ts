@@ -7,7 +7,7 @@ export class SearchCustomerModule {
         await this.searchCustomerpage.searchCustomer(customerName);
     }
 
-    public async getNumberOfSearchresults(){
+    public async getNumberOfSearchResults(){
         return await this.searchCustomerpage.getSearchResultCount();
     }
 
