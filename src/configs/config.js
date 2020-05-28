@@ -15,7 +15,10 @@ exports.config = {
     defaultTimeoutInterval: 30000
   },
   specs: ['../../out-tsc/tests/*Test.js'],
-
+  suites: {
+    customer: '../../out-tsc/tests/CustomerTest.js',
+    manager: '../../out-tsc/tests/ManagerTest.js'
+  },
   onPrepare: function () {
     browser.configData = require('../../out-tsc/configs/configData');
     var jasmineReporters = require('jasmine-reporters');

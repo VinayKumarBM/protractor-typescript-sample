@@ -6,7 +6,7 @@
   "scripts": {
     "tsc": "tsc",
     "pretest": "npm run tsc",
-    "test": "protractor ./src/configs/config.js",
+    "test": "protractor ./src/configs/config.js --suite customer",
     "posttest": "rm -r out-tsc"
   },
   "author": "Vinay Kumar B M",
